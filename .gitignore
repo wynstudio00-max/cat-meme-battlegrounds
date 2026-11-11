@@ -1,0 +1,19 @@
+# Showcase repo: code + docs only. Never commit keys, seeds or art sources.
+node_modules/
+.wrangler/
+.dev.vars
+*.seed.json
+admin_key.txt
+*.pem
+*.key
+.env
+.env.*
+*.blend
+*.blend1
+*.fbx
+*.obj
+*.glb
+*.gltf
+contracts/artifacts/
+contracts/cache/
+contracts/snapshot/

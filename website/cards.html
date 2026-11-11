@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CMBG Pass Cards</title>
+  <meta name="description" content="Claim and open your CMBG pass cards. Each card reveals one playable cat of its tier.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#d4ff00">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=18">
+  <link rel="stylesheet" href="cards.css?v=3">
+</head>
+<body class="pc">
+
+<header class="nav is-scrolled">
+  <div class="wrap nav__inner">
+    <a class="logo" href="index.html">CMBG</a>
+    <div class="pc-nav">
+      <span class="pc-net" id="netBadge" hidden></span>
+      <button class="btn btn--dark pc-connect" id="connectBtn">CONNECT WALLET</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section dark pc-hero">
+    <div class="wrap">
+      <p class="kicker kicker--lime">PASS CARDS <span class="pc-chip" id="envChip" hidden></span></p>
+      <h1 class="display h2">CLAIM. OPEN.<br>MEET YOUR CAT.</h1>
+      <p class="body-lg muted">Holders in the snapshot claim sealed cards. Open one and it reveals a cat of its tier, once and
+        for good. The cat lives on-chain with the card: trade the card, the cat goes with it.</p>
+
+      <div class="pc-wallet" id="walletBox" hidden>
+        <span class="pc-wallet__label">WALLET</span>
+        <code id="walletAddr"></code>
+        <span class="pc-wallet__mode" id="walletMode"></span>
+      </div>
+      <p class="pc-msg" id="topMsg" hidden></p>
+    </div>
+  </section>
+
+  <section class="section dark pc-claim" id="claimSection" hidden>
+    <div class="wrap">
+      <p class="kicker kicker--lime">YOUR CLAIM</p>
+      <div class="pc-claim__box">
+        <div class="pc-claim__packs" id="claimPacks"></div>
+        <div class="pc-claim__side">
+          <h2 class="display h3" id="claimTitle"></h2>
+          <p class="muted" id="claimText"></p>
+          <button class="btn btn--lime btn--lg" id="claimBtn" hidden>CLAIM CARDS</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark pc-list" id="cardsSection" hidden>
+    <div class="wrap">
+      <div class="pc-list__head">
+        <div>
+          <p class="kicker kicker--lime">YOUR CARDS</p>
+          <h2 class="display h3" id="cardsTitle">NO CARDS YET.</h2>
+        </div>
+        <button class="btn btn--ghost btn--xs" id="refreshBtn">REFRESH</button>
+      </div>
+      <div class="pc-grid" id="cardGrid"></div>
+    </div>
+  </section>
+
+  <section class="section dark pc-view">
+    <div class="wrap">
+      <p class="kicker kicker--lime">LOOK UP A WALLET</p>
+      <form class="pc-view__form" id="viewForm">
+        <input id="viewInput" placeholder="0x... wallet address" autocomplete="off" spellcheck="false" aria-label="Wallet address">
+        <button class="btn btn--outline-lime btn--xs" type="submit">VIEW</button>
+      </form>
+      <p class="muted pc-small" id="contractLine"></p>
+    </div>
+  </section>
+</main>
+
+<!-- pack opening + reveal -->
+<dialog class="reveal-dlg" id="revealDlg" aria-label="Opening a card">
+  <div class="rv" id="rv">
+    <div class="rv__burst" aria-hidden="true"></div>
+    <img class="rv__pack" id="rvPack" alt="">
+    <img class="rv__card" id="rvCard" alt="">
+    <!-- pack-opening film (nft/open): the sealed-pack picture waits, then the character's video plays over it -->
+    <div class="rv__film" id="rvFilm" hidden>
+      <img class="rv__wait" id="rvWait" alt="">
+      <video class="rv__video" id="rvVideo" muted playsinline preload="auto"></video>
+    </div>
+    <button class="rv__skip" id="rvSkip" hidden>SKIP</button>
+    <div class="rv__text">
+      <p class="kicker kicker--lime" id="rvKicker"></p>
+      <p class="display rv__name" id="rvName"></p>
+      <p class="rv__status" id="rvStatus"></p>
+    </div>
+    <button class="btn btn--lime" id="rvClose" hidden>NICE</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js" integrity="sha384-6Zl0Pc8zjSz8KvmNeXRvUQgY4ryFb+BwDvKCmLYcBME0joAaru491tQgi9B7zsMM" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="config.js?v=15"></script>
+<script src="cards.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+name = "cmbg-leaderboard"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# After `npx wrangler d1 create cmbg-leaderboard`, paste the database_id it prints here.
+routes = [{ pattern = "api.catbattlegrounds.com", custom_domain = true }]
+# keep the workers.dev address on too: with routes wrangler turns it off, and older game builds call it (2026-11-02)
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "cmbg-leaderboard"
+database_id = "1ed92af7-830c-4d27-8e0f-fb86f165530b"
+
+[vars]
+ALLOW_ORIGIN = "*"
+# CMBGPassCard on Robinhood mainnet (Contracts/deployments/robinhoodMainnet.json, 2026-11-08) for POST /v1/chain?net=mainnet
+CARD_MAINNET = "0x2bD993948bd2A202B0d8904062fadf6f521Fb533"
+
+# Secrets (not in this file):
+#   npx wrangler secret put SUBMIT_KEY   (same text as LeaderboardApi.SubmitKey in the game)
+#   npx wrangler secret put ADMIN_KEY    (for /v1/admin/*, keep private)
+#   npx wrangler secret put IP_SALT      (any random text)
+# For `wrangler dev` put them in .dev.vars (KEY=value per line).

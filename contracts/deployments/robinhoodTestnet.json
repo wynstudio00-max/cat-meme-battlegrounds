@@ -1,0 +1,23 @@
+{
+  "network": "robinhoodTestnet",
+  "chainId": 46630,
+  "deployedAt": "2026-11-05T10:32:43.901Z",
+  "deployer": "0x93C1cb5bB2Ba98745776292f280468af0105e33D",
+  "owner": "0x93C1cb5bB2Ba98745776292f280468af0105e33D",
+  "operator": "0xc33af739B40880E5Eb4964f53FB31B5e1Cb3dE6a",
+  "merkleRoot": "0x8fd239176c54e573fd13ccf5e184661bbdc1e6f81d2dc74903317c4a4207d412",
+  "baseURI": "ipfs://bafybeidyggvcs6tjernwx72ydqjtadvrnpv5e2dhs5qx4uzfjkn2f4buc4/",
+  "anchor": "0x116ab101f0d9daa4b4b7d81954d5a1419f4bfa9a976b52d3ccd7404aaeff4d50",
+  "CMBGPassCard": "0xc6f7DF85195613f0514Dc9f3Eec2eD32Fa6110A7",
+  "HashChainRandomSource": "0xf0a9e4C1F91dC40223b410Dc5B10E914c12CE76d",
+  "verify": [
+    "npx hardhat verify --network robinhoodTestnet 0xc6f7DF85195613f0514Dc9f3Eec2eD32Fa6110A7 0x93C1cb5bB2Ba98745776292f280468af0105e33D 0x6c7c535f84819cfd7cdcc0893fb2e0d390cb65bc295d45f0728463abdef58a6f \"ipfs://TODO/\"",
+    "npx hardhat verify --network robinhoodTestnet 0xf0a9e4C1F91dC40223b410Dc5B10E914c12CE76d 0x93C1cb5bB2Ba98745776292f280468af0105e33D 0xc6f7DF85195613f0514Dc9f3Eec2eD32Fa6110A7 0x93C1cb5bB2Ba98745776292f280468af0105e33D 0x116ab101f0d9daa4b4b7d81954d5a1419f4bfa9a976b52d3ccd7404aaeff4d50"
+  ],
+  "retiredSources": [
+    {
+      "address": "0xa29e595aAF7E427B9140E8431EEc1C31331f00F9",
+      "anchor": "0x34cdb90ae7c89253c401ad16aeac12c13406cac1300f50465d9e56d312482979"
+    }
+  ]
+}

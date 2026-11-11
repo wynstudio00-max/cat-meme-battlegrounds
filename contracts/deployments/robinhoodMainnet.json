@@ -1,0 +1,17 @@
+{
+  "network": "robinhoodMainnet",
+  "chainId": 4663,
+  "deployedAt": "2026-11-08T13:14:45.761Z",
+  "deployer": "0x3a9DF2568202330Ec3E9dFC8F6448e5e3b77f18f",
+  "owner": "0x3a9DF2568202330Ec3E9dFC8F6448e5e3b77f18f",
+  "operator": "0xA5d27062FEf609627249D8F203d44A467cd45834",
+  "merkleRoot": "0x934a87a0c35217806081e51b88ea35191beda727e54f9734fe13cba6df48b522",
+  "baseURI": "ipfs://bafybeibm6sfsow3ubaywazeshqiplb6j5zemxx4lhrxut74ldhprzoiktu/",
+  "anchor": "0x414fcc72c89a3d2968934514ed936a8b0e8b7eea52d7827f2357c866bd63392e",
+  "CMBGPassCard": "0x2bD993948bd2A202B0d8904062fadf6f521Fb533",
+  "HashChainRandomSource": "0xB672391FC5bAa31eA900C3158623655a8583282c",
+  "verify": [
+    "npx hardhat verify --network robinhoodMainnet 0x2bD993948bd2A202B0d8904062fadf6f521Fb533 0x3a9DF2568202330Ec3E9dFC8F6448e5e3b77f18f 0x934a87a0c35217806081e51b88ea35191beda727e54f9734fe13cba6df48b522 \"ipfs://bafybeibm6sfsow3ubaywazeshqiplb6j5zemxx4lhrxut74ldhprzoiktu/\"",
+    "npx hardhat verify --network robinhoodMainnet 0xB672391FC5bAa31eA900C3158623655a8583282c 0x3a9DF2568202330Ec3E9dFC8F6448e5e3b77f18f 0x2bD993948bd2A202B0d8904062fadf6f521Fb533 0xA5d27062FEf609627249D8F203d44A467cd45834 0x414fcc72c89a3d2968934514ed936a8b0e8b7eea52d7827f2357c866bd63392e"
+  ]
+}

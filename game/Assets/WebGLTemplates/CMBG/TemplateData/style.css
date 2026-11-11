@@ -1,0 +1,61 @@
+/* Cat Battleground WebGL page (2026-10-29): full-window game + loading screen from "CMBG FINAL UI/ScreenAwal".
+   Images are made by Tools/UI/prepare_loading_screen.py. */
+@font-face { font-family: 'CMBG Title'; src: url('title.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'CMBG Text'; src: url('text.ttf') format('truetype'); font-display: swap; }
+
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #0b1018; }
+body { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+
+#unity-canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; background: #0b1018; outline: none; }
+
+/* loading screen */
+#loading { position: fixed; inset: 0; z-index: 10; overflow: hidden; background: #0b1018; transition: opacity .6s ease; }
+#loading.done { opacity: 0; pointer-events: none; }
+#bg-blur { position: absolute; inset: -40px; background: url('bg_blur.webp') center / cover; filter: blur(24px) brightness(.75); }
+#bg { position: absolute; inset: 0; background: url('bg.webp') center / contain no-repeat; animation: drift 24s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: scale(1); } to { transform: scale(1.04); } }
+#shade { position: absolute; left: 0; right: 0; bottom: 0; height: 34%; background: linear-gradient(to bottom, rgba(5,10,20,0), rgba(5,10,20,.72)); }
+
+/* the bar: frame (aspect 7.01) with the fill inside the track and the paw badge on top */
+#bar { position: absolute; left: 50%; bottom: 5.5vh; transform: translateX(-50%); width: min(64vw, 96vh, 900px); aspect-ratio: 7.012; }
+#bar img { position: absolute; display: block; pointer-events: none; }
+#bar .frame, #bar .paw { left: 0; top: 0; width: 100%; height: 100%; }
+#track { position: absolute; left: 1.578%; top: 18.18%; width: 91.21%; height: 24.11%; }
+#track img { left: 0; top: 0; width: 100%; height: 100%; clip-path: inset(0 100% 0 0); }   /* no transition: it runs on the main thread, which Unity keeps busy while starting */
+#pct { position: absolute; right: 10.5%; top: 18.18%; height: 24.11%; display: flex; align-items: center;
+       font: 400 clamp(11px, 1.9vh, 22px)/1 'CMBG Title', 'Arial Black', sans-serif; color: #fff; letter-spacing: .04em;
+       text-shadow: 0 2px 0 #000, 0 0 6px rgba(0,0,0,.8); }
+#tip { position: absolute; left: 50%; bottom: 1.6vh; transform: translateX(-50%); width: 92vw; text-align: center;
+       font: 400 clamp(11px, 2vh, 20px)/1.2 'CMBG Text', 'Arial', sans-serif; color: #fff;
+       text-shadow: 0 2px 0 rgba(0,0,0,.85), 0 0 8px rgba(0,0,0,.7); transition: opacity .4s; }
+#tip.err { color: #ff6a5a; }
+
+#unity-warning { position: fixed; left: 50%; top: 4%; transform: translateX(-50%); z-index: 20; max-width: 90vw; display: none;
+                 font: 14px/1.3 Arial, sans-serif; color: #111; }
+#unity-warning > div { background: #ffd23a; padding: 8px 12px; border-radius: 8px; margin-bottom: 6px; }
+
+/* login choice over the loading screen (2026-10-29): Connect Wallet / Connect X (coming soon) / Play as a guest */
+#dim { position: absolute; inset: 0; background: rgba(5,10,20,.42); transition: opacity .35s; }
+#login { position: absolute; left: 50%; transform: translateX(-50%);
+         bottom: calc(5.5vh + min(64vw, 96vh, 900px) / 7.012 + 1.5vh); width: min(30vw, 46vh, 460px);
+         display: flex; flex-direction: column; gap: .5vh; transition: opacity .35s, transform .35s; }
+#loading.chosen #login { opacity: 0; transform: translateX(-50%) scale(.92); pointer-events: none; }
+#loading.chosen #dim { opacity: 0; }
+.lb { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; outline: none;
+      filter: drop-shadow(0 .6vh 1vh rgba(0,0,0,.5)); transition: transform .12s ease-out; -webkit-tap-highlight-color: transparent; }
+.lb img { display: block; width: 100%; height: auto; pointer-events: none; }
+.lb:hover { transform: scale(1.04); }
+.lb:active { transform: scale(.97); }
+.lb.nope { animation: nope .45s ease-out; }
+@keyframes nope { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-3%); } 40% { transform: translateX(3%); }
+                  60% { transform: translateX(-2%); } 80% { transform: translateX(1%); } }
+.soon { position: absolute; left: 50%; top: 50%; padding: .3em .7em; border: .18em solid #fff; border-radius: .4em; background: #e8322b;
+        font: 400 clamp(11px, 2.4vh, 26px)/1 'CMBG Title', 'Arial Black', sans-serif; color: #fff; letter-spacing: .05em; white-space: nowrap;
+        text-shadow: 0 2px 0 rgba(0,0,0,.45); box-shadow: 0 4px 12px rgba(0,0,0,.45);
+        transform: translate(-50%, -50%) rotate(-8deg) scale(0); opacity: 0; pointer-events: none; }
+.soon.show { animation: stamp 1.6s ease-out forwards; }
+@keyframes stamp { 0% { transform: translate(-50%,-50%) rotate(-8deg) scale(2.2); opacity: 0; }
+                   12% { transform: translate(-50%,-50%) rotate(-8deg) scale(.92); opacity: 1; }
+                   20% { transform: translate(-50%,-50%) rotate(-8deg) scale(1); opacity: 1; }
+                   80% { transform: translate(-50%,-50%) rotate(-8deg) scale(1); opacity: 1; }
+                   100% { transform: translate(-50%,-50%) rotate(-8deg) scale(1); opacity: 0; } }
